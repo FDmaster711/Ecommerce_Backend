@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import productRoutes from '../routes/products.routes.js';
 import categoryRoutes from '../routes/category.routes.js';
 import authRoutes from '../routes/auth.routes.js';
+import userRoutes from '../routes/user.routes.js';
 
 dotenv.config();
 
@@ -26,7 +27,8 @@ export class Server {
         this.rutas = {
             products:`${this.pre}/products`,
             categories: `${this.pre}/categories`,
-            auth: `${this.pre}/auth`
+            auth: `${this.pre}/auth`,
+            users: `${this.pre}/users`
         };
 
         this.routes();
@@ -43,6 +45,7 @@ export class Server {
         this.app.use(this.rutas.products,productRoutes);
         this.app.use(this.rutas.categories,categoryRoutes);
         this.app.use(this.rutas.auth,authRoutes);
+        this.app.use(this.rutas.users,userRoutes);
     }
 
     listen = () => {
