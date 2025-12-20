@@ -69,4 +69,26 @@ export class UserController {
         }
     }
 
+    updateRole = async (req,res) => {
+        try {
+        const {role} = req.body;
+        const {id} = req.params;
+        
+        if(role !== 'CUSTOMER' && role !== 'ADMIN' ){
+            return res.status(400).json({
+                message: "Invalid role. Role must be either 'CUSTOMER' or 'ADMIN'."
+            });
+        }
+
+        const {message, status, data} = await userServices.update(id, {role});
+
+        return res.status(status).json({
+            message,
+            data
+        });
+    } catch (err) {
+        return res.status(500).json({message : 'Internal Server Error', error: err.message});
+    }
+    }
+
 }
