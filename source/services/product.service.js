@@ -92,7 +92,7 @@ import { generateSlug } from "../utils/slug.utils.js";
 
     createProduct = async (data) => {
         try {
-           const slug = generateSlug(data.slug);
+           const slug = generateSlug(data.name);
 
             const newProduct = await prisma.product.create({
                 data: {

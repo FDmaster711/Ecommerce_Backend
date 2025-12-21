@@ -65,9 +65,9 @@ export class ProductController {
 
     update = async (req,res) => {
         try {
-            const producId = req.params.id;
+            const productId = req.params.id;
             const productData = req.body;
-            const {message,status,data} = await productServices.update(producId,productData);
+            const {message,status,data} = await productServices.updateProduct(productId,productData);
             return res.status(status).json({
                 message,
                 data
