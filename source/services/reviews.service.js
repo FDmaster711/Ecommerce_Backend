@@ -120,14 +120,14 @@ export class ReviewServices {
 
  delete = async (userId, reviewId) => {
     try {
-        const deletedReview = await prisma.review.findFirst({
+        const deletedReview = await prisma.review.deleteMany({
             where: {
                 id: reviewId,
-                ...(userId && (userId))
+                ...(userId && {userId})
             }
         });
 
-        if(!deletedReview) return {message: 'Review Not found or unauthorized', status: 404}
+        if(deletedReview.count === 0) return {message: 'Review Not found or unauthorized', status: 404}
 
         return {
             message: 'Review deleted successfully',
@@ -140,8 +140,7 @@ export class ReviewServices {
             message: 'Internal Server Error',
             status: 500
         }
-    }
-     
+    }  
  }
 
 
