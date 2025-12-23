@@ -8,11 +8,11 @@ const router = Router();
 const orderController = new OrderController();
 
 router.get('/user', authMiddleware, orderController.getByUser);
-router.get('/:id/user', authMiddleware, orderController.getById );
+router.get('/:id/user', authMiddleware, ValidateId(), orderController.getById );
 router.get('/',authMiddleware, adminOnly, orderController.getAll);
-router.post('/', authMiddleware,  orderController.create);
-router.patch('/:id/status', authMiddleware, adminOnly, orderController.updateStatus);
-router.patch('/:id/cancel', authMiddleware, orderController.cancel)
+router.post('/', authMiddleware, validateCreate(), orderController.create);
+router.patch('/:id/status', authMiddleware, ValidateId(), validateStatus(), adminOnly, orderController.updateStatus);
+router.patch('/:id/cancel', authMiddleware, ValidateId(), validateStatus(), orderController.cancel)
 
 
  
