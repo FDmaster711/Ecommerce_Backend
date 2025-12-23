@@ -7,6 +7,7 @@ import productRoutes from '../routes/products.routes.js';
 import categoryRoutes from '../routes/category.routes.js';
 import authRoutes from '../routes/auth.routes.js';
 import userRoutes from '../routes/user.routes.js';
+import orderRoutes from '../routes/order.routes.js';
 
 dotenv.config();
 
@@ -28,7 +29,8 @@ export class Server {
             products:`${this.pre}/products`,
             categories: `${this.pre}/categories`,
             auth: `${this.pre}/auth`,
-            users: `${this.pre}/users`
+            users: `${this.pre}/users`,
+            orders: `${this.pre}/orders`
         };
 
         this.routes();
@@ -46,6 +48,7 @@ export class Server {
         this.app.use(this.rutas.categories,categoryRoutes);
         this.app.use(this.rutas.auth,authRoutes);
         this.app.use(this.rutas.users,userRoutes);
+        this.app.use(this.rutas.orders,orderRoutes);
     }
 
     listen = () => {

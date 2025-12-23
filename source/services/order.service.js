@@ -27,7 +27,7 @@ export class OrderServices {
                     }
                 },
                 orderBy: {
-                    createdAt: decrement
+                    createdAt: 'desc'
                 }
             });
 
@@ -82,7 +82,7 @@ export class OrderServices {
                     });
                 }
 
-                const newOrder = tx.order.create({
+                const newOrder = await tx.order.create({
                     data: {
                         userId,
                         address,
@@ -184,10 +184,12 @@ export class OrderServices {
         }
     }
 
-    getById = async (orderId) => {
+    getById = async (orderId, userId= null) => {
          try {
-            const foundOrder = await prisma.order.findUnique({
-                where: {id: orderId},
+            const foundOrder = await prisma.order.findFirst({
+                where: {id: orderId,
+                        ...(userId && {userId: userId})
+                },
                 include: {
                     items: {
                         include: {
@@ -215,5 +217,59 @@ export class OrderServices {
                 status: 500
             }
          }
+    }
+
+    cancelOrder = async (orderId,userId = null) => {
+        try {
+            return await prisma.$transaction(async (tx) => {
+                const order = await tx.order.findFirst({
+                    where: {
+                        id: orderId,
+                        ...(userId && {userId: userId})
+                    },
+                    include: {
+                        items: true
+                    }
+                });
+
+                if(!order){
+                    throw new Error('Order not found Or user unauthorized');
+                }
+
+                if(order.status === 'SHIPPED' || order.status === 'DELIVERED'){
+                    throw new Error('An order that is already in transit or delivered cannot be cancelled.');
+                }
+
+                if(order.status === 'CANCELLED'){
+                    throw new Error('This Order Has already been cancelled');
+                }
+
+                for (const item of order.items){
+                    await tx.product.update({
+                        where: {id: item.productId},
+                        data: {stock: {increment: item.quantity}}
+                    });
+                }
+
+                const cancelledOrder = await tx.order.update({
+                    where: {id: orderId},
+                    data: {status: 'CANCELLED'}
+                });
+
+                 return {
+                message: 'Order Cancelled successfully',
+                status: 200,
+                data: cancelledOrder
+            }
+            })
+
+           
+        } catch (err) {
+            return {
+                message: err.message,
+                status: 400
+            }
+            
+        }
     }
 }
