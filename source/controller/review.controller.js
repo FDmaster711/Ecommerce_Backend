@@ -45,7 +45,7 @@ export class ReviewController {
 
      delete = async (req,res) => {
       try {
-        const userId = req.user.id;
+        const user = req.user;
       const {id} = req.params;
 
       const userIdFilter = (user.role === 'ADMIN') ? null : user.id;
