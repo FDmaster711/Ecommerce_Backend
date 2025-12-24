@@ -31,6 +31,7 @@ router.get("/", categoryController.getAll);
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: 4629fe85-27d9-43f3-8756-3e7172d96442
  *         required: true
  *         schema:
  *           type: string
@@ -53,6 +54,7 @@ router.get("/:id", validateCategoryId, categoryController.getById);
  *     parameters:
  *       - in: path
  *         name: name
+ *         example: Pizzas
  *         required: true
  *         schema:
  *           type: string
@@ -63,7 +65,7 @@ router.get("/:id", validateCategoryId, categoryController.getById);
  *       '404':
  *         description: No category matches that name.
  */
-router.get("/name/:name", validateCategoryData, categoryController.getByName);
+router.get("/name/:name",  categoryController.getByName);
 
 /**
  * @swagger
@@ -104,6 +106,7 @@ router.post("/", validateCategoryData, categoryController.create);
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: 4629fe85-27d9-43f3-8756-3e7172d96442
  *         required: true
  *         schema:
  *           type: string
@@ -135,6 +138,7 @@ router.put("/:id", validateCategoryData, validateCategoryId, categoryController.
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: 4629fe85-27d9-43f3-8756-3e7172d96442
  *         required: true
  *         schema:
  *           type: string

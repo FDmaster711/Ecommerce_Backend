@@ -34,6 +34,7 @@ router.get("/", authMiddleware, adminOnly, userController.getAllUsers);
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: 2dea3870-3704-48d6-a1a2-6023039980b4
  *         required: true
  *         schema:
  *           type: string
@@ -57,6 +58,7 @@ router.get("/:id", authMiddleware, userIdParamValidator, userController.getUserB
  *     parameters:
  *       - in: path
  *         name: email
+ *         example: admin@example.com
  *         required: true
  *         schema:
  *           type: string
@@ -80,6 +82,7 @@ router.get("/email/:email", authMiddleware, userController.getUserByEmail);
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: 2dea3870-3704-48d6-a1a2-6023039980b4
  *         required: true
  *         schema:
  *           type: string
@@ -113,6 +116,7 @@ router.put("/:id", authMiddleware, userIdParamValidator, updateUserValidator, us
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: 2dea3870-3704-48d6-a1a2-6023039980b4
  *         required: true
  *         schema:
  *           type: string
@@ -133,6 +137,7 @@ router.delete("/:id", authMiddleware, userIdParamValidator, userController.delet
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: 2dea3870-3704-48d6-a1a2-6023039980b4
  *         required: true
  *         schema:
  *           type: string

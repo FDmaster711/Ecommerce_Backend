@@ -35,6 +35,7 @@ router.get('/user', authMiddleware, orderController.getByUser);
  *       - in: path
  *         name: id
  *         required: true
+ *         example: 81e31cf4-e40c-4357-ac25-0c515b1d1519
  *         schema:
  *           type: string
  *         description: The unique UUID of the order.
@@ -114,6 +115,7 @@ router.post('/', authMiddleware, validateCreate(), orderController.create);
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: 81e31cf4-e40c-4357-ac25-0c515b1d1519
  *         required: true
  *         schema:
  *           type: string
@@ -145,6 +147,7 @@ router.patch('/:id/status', authMiddleware, ValidateId(), validateStatus(), admi
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: 81e31cf4-e40c-4357-ac25-0c515b1d1519
  *         required: true
  *         schema:
  *           type: string

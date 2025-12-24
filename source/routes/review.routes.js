@@ -72,6 +72,7 @@ router.post('/', authMiddleware, validateCreateReview(), reviewController.create
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: d557f2ac-1f5a-4e5d-9348-3c0b457a1e4a
  *         required: true
  *         schema:
  *           type: string
@@ -110,6 +111,7 @@ router.put('/:id/update', authMiddleware, ValidateId(), validateUpdateReview(), 
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: d557f2ac-1f5a-4e5d-9348-3c0b457a1e4a
  *         required: true
  *         schema:
  *           type: string

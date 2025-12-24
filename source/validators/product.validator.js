@@ -23,7 +23,7 @@ export const validateUpdateProductData = [
     .notEmpty().withMessage('Price is required')
     .isFloat({ gt: 0 }).withMessage('Price must be a number greater than 0'),
     body('categoryId')
-    .notEmpty().withMessage('Category ID is required')
+    .optional()
     .isUUID().withMessage('Invalid category ID format'),
     body('slug')
     .trim()

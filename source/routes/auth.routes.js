@@ -21,10 +21,10 @@ const authController = new AuthController();
  *             properties:
  *               name:
  *                 type: string
- *                 example: "Juan Perez"
+ *                 example: "test"
  *               email:
  *                 type: string
- *                 example: "juan@example.com"
+ *                 example: "Test@example.com"
  *               password:
  *                 type: string
  *                 example: "password123"
@@ -51,10 +51,10 @@ router.post("/register", registerValidator, authController.Register);
  *             properties:
  *               email:
  *                 type: string
- *                 example: "admin@pizzeria.com"
+ *                 example: "admin@example.com"
  *               password:
  *                 type: string
- *                 example: "admin123"
+ *                 example: "admin1234"
  *     responses:
  *       200:
  *         description: Login successful, returns a JWT token

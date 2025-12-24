@@ -36,6 +36,7 @@ router.get('/', productController.getAll);
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: aa38c793-9f5a-447c-a205-c3bcccc75894
  *         required: true
  *         schema:
  *           type: string
@@ -57,6 +58,7 @@ router.get('/:id', validateProductId, productController.getById);
  *     parameters:
  *       - in: path
  *         name: slug
+ *         example: hawaiana-pizza
  *         required: true
  *         schema:
  *           type: string
@@ -80,6 +82,7 @@ router.get('/slug/:slug', validateProductSlug, productController.getBySlug);
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: aa38c793-9f5a-447c-a205-c3bcccc75894
  *         required: true
  *         schema:
  *           type: string
@@ -119,6 +122,7 @@ router.put(
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: aa38c793-9f5a-447c-a205-c3bcccc75894
  *         required: true
  *         schema:
  *           type: string
@@ -177,6 +181,7 @@ router.post('/', authMiddleware, adminOnly, validateProductData, productControll
  *     parameters:
  *       - in: path
  *         name: id
+ *         example: aa38c793-9f5a-447c-a205-c3bcccc75894
  *         required: true
  *         schema:
  *           type: string

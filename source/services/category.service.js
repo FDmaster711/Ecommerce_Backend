@@ -56,7 +56,7 @@ export class CategoryServices {
     getByName = async (name) => {
         try {
             
-            const category = await prisma.category.findUnique({
+            const category = await prisma.category.findFirst({
                 where: {
                     name: {
                         equals: name,
