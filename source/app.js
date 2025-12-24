@@ -6,5 +6,4 @@ const port = process.env.API_PORT || 5800;
 
 const server = new Server(port);
 
-
 server.listen();

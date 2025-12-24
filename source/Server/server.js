@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { swaggerSpec } from '../lib/swagger.js';
+import swaggerUi from 'swagger-ui-express'; 
 import productRoutes from '../routes/products.routes.js';
 import categoryRoutes from '../routes/category.routes.js';
 import authRoutes from '../routes/auth.routes.js';
@@ -43,6 +45,7 @@ export class Server {
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.static(path.join(__dirname, '../public')));
+        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     }
 
     routes = () => {
