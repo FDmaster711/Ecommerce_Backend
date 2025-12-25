@@ -126,10 +126,10 @@ router.post('/', authMiddleware, validateCreate(), orderController.create);
  *           schema:
  *             type: object
  *             properties:
- *               status:
+ *               newStatus:
  *                 type: string
- *                 enum: [PENDING, COMPLETED, CANCELLED]
- *                 example: "COMPLETED"
+ *                 enum: [PENDING, PAID, SHIPPED, DELIVERED, CANCELLED]
+ *                 example: "PAID"
  *     responses:
  *       200:
  *         description: Order status updated successfully.
