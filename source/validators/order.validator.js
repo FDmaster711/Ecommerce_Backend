@@ -17,7 +17,7 @@ export const validateCreate = () => [
 
 export const validateStatus = () => [
   param('id').isUUID().withMessage('Invalid order ID format'),
-  body('status').isIn(['PENDING','PAID','SHIPPED','DELIVERED','CANCELLED']).withMessage('Invalid status'),
+  body('newStatus').isIn(['PENDING','PAID','SHIPPED','DELIVERED','CANCELLED']).withMessage('Invalid status'),
   validateFields
 ];
 
