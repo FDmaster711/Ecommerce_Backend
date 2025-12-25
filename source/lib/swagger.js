@@ -1,5 +1,6 @@
-// source/config/swagger.js
 import swaggerJSDoc from 'swagger-jsdoc';
+import dotenv from 'dotenv'; 
+dotenv.config();
 
 const options = {
   definition: {
@@ -11,21 +12,22 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:5800', 
+        url: process.env.ZG_RENDER_EXTERNAL_URL || `http://localhost:${process.env.API_PORT || 5800}`,
+        description: 'Servidor Principal'
       },
     ],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
+components: {
+  securitySchemes: {
+    bearerAuth: {
+      type: 'http',
+        scheme: 'bearer',
           bearerFormat: 'JWT',
         },
-      },
-    },
   },
-  
-  apis: ['./source/routes/*.js'], 
+},
+  },
+
+apis: ['./source/routes/*.js'], 
 };
 
 export const swaggerSpec = swaggerJSDoc(options);
